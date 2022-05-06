@@ -23,6 +23,7 @@ public class EVA3_1_STACK_OVERFLOW {
     //Stack es la memoria para variables locales y llamadas a función
     //Stack Overflow -> Desbordamiento de pila (stack)
     //ERROR -> Fatales al programa, generados por el sistema operativo
+    //Excepciones: Del programa, desviación del comportamiento normal del programa, controlables.
     public static void terminarStack(){
         c++;
         System.out.println(c);
