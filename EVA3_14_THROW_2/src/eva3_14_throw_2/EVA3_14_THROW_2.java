@@ -4,6 +4,10 @@
  * and open the template in the editor.
  */
 package eva3_14_throw_2;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 /**
  *
  * @author emiliomurillo
@@ -23,12 +27,23 @@ public class EVA3_14_THROW_2 {
         }
         
         try {
-            Persona persona2 = new Persona("Sebastian Emilio", 20);
+            Persona persona2 = new Persona("Sebastian Emilio", capturarEdad());
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
     
+    public static int capturarEdad() throws Exception{
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Captura la edad");
+        int valor = 0;
+        try{
+            valor = sc.nextInt();
+        }catch(InputMismatchException ex){
+            throw new Exception("Introdujiste una cadena de texto, no es un número válido.");
+        }
+        return valor;
+    }
 }
 
 class Persona {
