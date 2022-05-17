@@ -5,7 +5,6 @@
  */
 package eva3_12_usar_throw;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -18,25 +17,16 @@ public class EVA3_12_USAR_THROW {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int iEdad = 0;
-        boolean datoErroneo = true; //El usuario siempre se equivoca
-        Scanner sc = new Scanner(System.in);
-
-        do{
-            try{
-                System.out.println("Introduce tu edad (valor entero positivo): ");
-                iEdad = sc.nextInt();
-                if(iEdad < 0)
-                   throw new Exception("El valor " + iEdad + " no es una edad válida");
-                System.out.println("Tu edad es: " + iEdad);
-                datoErroneo = false;
-
-                }catch(InputMismatchException i){
-                    System.out.println("Edad no válida");
-                }catch(Exception e){
-                    e.printStackTrace();
-                }
-                
-        }while(datoErroneo);
+        Scanner input = new Scanner (System.in);
+        int iValor = 0;
+        try {
+            System.out.println("Introduce tu edad (número entero positivo): ");
+            iValor = input.nextInt();
+            if (iValor < 0)
+            throw new Exception("El valor = " + iValor + " no es una edad valida.");       
+        } catch (Exception e) {
+        e.printStackTrace();
+        }
+        System.out.println("La edad capturada es: " + iValor);
     }
 }
