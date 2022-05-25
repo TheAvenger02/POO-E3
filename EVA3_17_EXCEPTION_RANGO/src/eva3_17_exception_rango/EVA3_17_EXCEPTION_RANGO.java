@@ -4,10 +4,6 @@
  * and open the template in the editor.
  */
 package eva3_17_exception_rango;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author emiliomurillo
