@@ -36,4 +36,4 @@ public class EVA3_18_ARCHIVOS {
         }
     }
 }
-//Stream -> Flujo de bytes
+//Stream -> Flujo de bytes (texto, binarios)
