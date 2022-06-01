@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eva3_21_serializable;
+package eva3_22_serializable_arreglos;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -12,57 +12,59 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
 
 /**
  *
  * @author emiliomurillo
  */
-public class EVA3_21_SERIALIZABLE {
+public class EVA3_22_SERIALIZABLE_ARREGLOS {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        //Especificar qué objetos (clases) son serializables -> Debemos hacer que la clase implemente la interfaz serializable
-        Persona persona = new Persona("Emilio", "Murillo");
-        escribirObj(persona);
+        ArrayList<Persona> miListaPerso = new ArrayList(); //Mecanismo para almacenar información del mismo tipo, Collections <Tipos de datos genéricos>
+        miListaPerso.add(new Persona("Emilio","Murillo"));
+        miListaPerso.add(new Persona("Mayela","Murillo"));
+        miListaPerso.add(new Persona("Rodolfo","Murillo"));
+        escribirObj(miListaPerso);
         leerObj();
     }
     //Guardar objetos
     public static void escribirObj(Object obj){
         try {
-            FileOutputStream abrirArch = new FileOutputStream("/Users/emiliomurillo/Documents/Archivos/archivo3.obj");
+            FileOutputStream abrirArch = new FileOutputStream("/Users/emiliomurillo/Documents/Archivos/archivo4.obj");
             ObjectOutputStream guardarObj = new ObjectOutputStream(abrirArch);
             guardarObj.writeObject(obj);
             guardarObj.flush();
             guardarObj.close();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(EVA3_21_SERIALIZABLE.class.getName()).log(Level.SEVERE, null, ex);
+                ex.printStackTrace();
         } catch (IOException ex) {
-            Logger.getLogger(EVA3_21_SERIALIZABLE.class.getName()).log(Level.SEVERE, null, ex);
+                ex.printStackTrace();
         }
     }
     //Leer objetos
     public static void leerObj(){
         try {
-            FileInputStream abrirArch = new FileInputStream("/Users/emiliomurillo/Documents/Archivos/archivo3.obj");
+            FileInputStream abrirArch = new FileInputStream("/Users/emiliomurillo/Documents/Archivos/archivo4.obj");
             ObjectInputStream leerObj = new ObjectInputStream(abrirArch);
-            Persona persona = (Persona)leerObj.readObject(); //Object (Class Object)
-            System.out.println("Nombre: " + persona.getNombre() + " " + persona.getApellido());
+            ArrayList<Persona> miListaPerso = (ArrayList<Persona>)leerObj.readObject(); //Object (Class Object)
+            for(int i = 0; i < miListaPerso.size(); i++){
+                Persona persona = miListaPerso.get(i);
+                System.out.println("Nombre: " + persona.getNombre() + " " + persona.getApellido());
+            }
             leerObj.close();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(EVA3_21_SERIALIZABLE.class.getName()).log(Level.SEVERE, null, ex);
+                ex.printStackTrace();
         } catch (IOException ex) {
-            Logger.getLogger(EVA3_21_SERIALIZABLE.class.getName()).log(Level.SEVERE, null, ex);
+                ex.printStackTrace();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(EVA3_21_SERIALIZABLE.class.getName()).log(Level.SEVERE, null, ex);
+                ex.printStackTrace();
         }
-    }
-    
-    
+    }  
 }
 
 class Persona implements Serializable{
@@ -91,8 +93,6 @@ class Persona implements Serializable{
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
-    }
-    
-    
+    } 
 }
 //Serializable -> Mandar información bit x bit
